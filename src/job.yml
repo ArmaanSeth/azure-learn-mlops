@@ -2,14 +2,14 @@ $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
 code: model
 command: >-
   python train.py
-  --diabetes-dev-csv ${{inputs.training_data}}
+  --diabetes-dev-csv ${{inputs.diabetes-dev}}
   --
 inputs:
   training_data: 
     type: uri_folder 
-    path: azureml:diabetes-dev-folder:1
+    path: azureml:diabetes-dev-folder:2
   reg_rate: 0.01
 environment: azureml:AzureML-sklearn-0.24-ubuntu18.04-py37-cpu@latest
-compute: jobdemo-ci
+compute: ci-jobdemo
 experiment_name: jobs-demo
 description: 
