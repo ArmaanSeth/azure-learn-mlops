@@ -15,9 +15,15 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
-    - name: Configure default azure ml workspace
-        run: az configure --defaults group=${{secrets.GROUP}} workspace=${{secrets.WORKSPACE}} location=${{secrets.LOCATION}}
-    - name: Model training
-      run: az ml job create -f job.yml
-      working-directory: src
-
+    - name: Create data asset if not exists
+      run: |
+        echo $workspace
+        az ml data show --name diabetes-dev-folder -v 1 $workspace 2> /dev/null || az ml data create --name diabetes-dev-folder --version 1 --path ./experimentation/data $workspace
+    - name: Create a job
+      run: |
+        # replace compute name variable
+        cd src
+        export computeName=${{ vars.computeClusterName }}
+        cat job.yml | envsubst '${computeName}' | tee job-updated.yml
+        # create a job
+        az ml job create --file job-updated.yml $workspace
