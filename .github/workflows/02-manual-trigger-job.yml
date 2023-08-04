@@ -27,8 +27,8 @@ jobs:
       run: |
         az ml job create \
           --file src/job.yml \
-          --resource-group ${{ vars.RESOURCE_GROUP }} \
-          --workspace-name ${{ vars.WORKSPACE_NAME }} \
+          --resource-group ${{ creds.RESOURCE_GROUP }} \
+          --workspace-name ${{ creds.WORKSPACE_NAME }} \
           --set training_data=${{github.event.inputs.training_data}} \
           --set reg_rate=${{github.event.inputs.reg_rate}} \
           --name train \
