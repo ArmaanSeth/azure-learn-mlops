@@ -32,4 +32,4 @@ jobs:
           --set training_data=${{github.event.inputs.training_data}} \
           --set reg_rate=${{github.event.inputs.reg_rate}} \
           --name train \
-          --wait
+          
