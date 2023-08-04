@@ -18,12 +18,12 @@ jobs:
     - name: Create data asset if not exists
       run: |
         echo $workspace
-        az ml data show --name diabetes-dev-folder -v 1 $workspace 2> /dev/null || az ml data create --name diabetes-dev-folder --version 1 --path ./experimentation/data $workspace
+        az ml data show --name diabetes-dev-folder -v 1 $jobs-demo 2> /dev/null || az ml data create --name diabetes-dev-folder --version 1 --path ./experimentation/data $jobs-demo
     - name: Create a job
       run: |
         # replace compute name variable
         cd src
         export computeName=${{ vars.computeClusterName }}
-        cat job.yml | envsubst '${computeName}' | tee job-updated.yml
+        cat job.yml | envsubst '${ci-jobs}' | tee job-updated.yml
         # create a job
-        az ml job create --file job-updated.yml $workspace
+        az ml job create --file job-updated.yml $jobs-demo
