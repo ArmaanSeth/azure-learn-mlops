@@ -16,12 +16,5 @@ jobs:
       with:
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - name: Submit job
-      run: |
-        az ml job create \
-          --file src/job.yml \
-          --resource-group cloud-shell-storage-centralindia \
-          --workspace-name jobs-demo \
-          --set training_data=${{github.event.inputs.training_data}} \
-          --set reg_rate=${{github.event.inputs.reg_rate}} \
-          --name train \
+      run: run: az ml job create -f src/job.yml --resource-group cloud-shell-storage-centralindia --workspace-name jobs-demo
           
