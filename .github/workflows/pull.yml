@@ -2,5 +2,10 @@ on:
   pull_request:
     branches:
       - main
-run: |
-        echo "Will add code checks here in next challenge"
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    steps:
+      - name: merge pull
+        run: |
+              echo "Will add code checks here in next challenge"
