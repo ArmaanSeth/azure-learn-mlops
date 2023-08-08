@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: production_env
     needs: train-dev
-     steps:
+    steps:
     - name: Check out repo
       uses: actions/checkout@main
     - name: Install az ml extension
