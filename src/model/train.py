@@ -12,6 +12,7 @@ from sklearn.model_selection import train_test_split
 
 # define functions
 
+
 def main(args):
     
     # TO DO: enable autologging
@@ -26,7 +27,6 @@ def main(args):
 
     # train model
     train_model(args.reg_rate, X_train, X_test, y_train, y_test)
-
 
 def get_csvs_df(path):
 
