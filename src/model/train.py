@@ -10,6 +10,7 @@ import mlflow
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 
+
 # define functions
 
 def main(args):
@@ -42,9 +43,7 @@ def split_data(df):
 
     X = df.drop(["PatientID", "Diabetic"], axis=1)
     y = df["Diabetic"]
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.25, random_state=0
-    )
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=0)
     return X_train, X_test, y_train, y_test
 
 
